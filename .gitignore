@@ -1,1 +1,209 @@
+
+# Virtualenv related
+bin/
+include/
+pip-selfcheck.json
 vass2
+
+
+Coding for Entrepreneurs
+
+    Courses
+    Projects
+
+    Enroll
+    Login
+
+    Blog
+    Django, Virtualenv, & Python .gitignore File
+
+Django, Virtualenv, & Python .gitignore File
+July 30, 2017
+
+By: Justin Mitchel
+
+We use .gitignore files often. Here's an example you might consider using in your projects:
+
+.DS_STORE
+
+# Virtualenv related
+bin/
+include/
+pip-selfcheck.json
+
+# Django related 
+# src/<yourproject>/settings/local.py
+# static-cdn/  # any collected static files 
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# celery beat schedule file
+celerybeat-schedule
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+
+
+Comments
+
+Login or Register to comment.
+
+This is so helpful.
+
+Thank you so much
+via girisagar46 in Django, Virtualenv, & Python .gitignore File | Dec. 14, 2017, 10:12 AM | Follow | View Thread | Raw
+1 Replies
+
+Login or Register to comment.
+
+Popular Posts
+Install Python & Django on Windows
+Create a Blank Django Project
+Install Django on Mac OS
+Angular Setup, Install, & Build Guide
+Celery + Redis + Django
+Podcast Episodes
+Episode #1 - Brian Michael Riley
+The Purpose of Business
+Recent Posts
+Deep Learning Acronym Cheatsheet
+Install OpenCV 3 for Python on Mac
+Django QuerySet to CSV Files & Datasets
+File Upload with Angular
+Creating an JWT Token Interceptor for HTTP Requests in Angular
+Community
+
+    Create Free Account
+    Login
+    Open Source
+    Ask
+    Make a Suggestion
+    Guides
+
+Team CFE
+
+    Projects
+    Blog
+    Updates
+    About Us
+    Contact
+
+Hello
+
+
+
+
+
+
+Instagram
+Recent Posts
+
+    Deep Learning Acronym Cheatsheet
+    Install OpenCV 3 for Python on Mac
+    Django QuerySet to CSV Files & Datasets
+    File Upload with Angular
+    Creating an JWT Token Interceptor for HTTP Requests in Angular
+
+
+
+Made with in Newport Beach, California | © 2018 Coding For Entrepreneurs
+		
+		
+	
+	
+	
+	
+	
