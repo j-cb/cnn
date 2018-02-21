@@ -4,6 +4,7 @@ bin/
 include/
 pip-selfcheck.json
 vass2
+<<<<<<< Updated upstream
 
 
 Coding for Entrepreneurs
@@ -207,3 +208,17 @@ Made with in Newport Beach, California | © 2018 Coding For Entrepreneurs
 	
 	
 	
+=======
+# Virtualenv
+# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
+.Python
+[Bb]in
+[Ii]nclude
+[Ll]ib
+[Ll]ib64
+[Ll]ocal
+[Ss]cripts
+pyvenv.cfg
+.venv
+pip-selfcheck.json
+>>>>>>> Stashed changes
