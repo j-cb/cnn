@@ -1,0 +1,11 @@
+Exception information:
+Traceback (most recent call last):
+  File "/disk/sim/home/bitterwo/tensorflow/cnn/cnnv/lib/python3.5/site-packages/pip/basecommand.py", line 215, in main
+    status = self.run(options, args)
+  File "/disk/sim/home/bitterwo/tensorflow/cnn/cnnv/lib/python3.5/site-packages/pip/commands/install.py", line 312, in run
+    wheel_cache
+  File "/disk/sim/home/bitterwo/tensorflow/cnn/cnnv/lib/python3.5/site-packages/pip/basecommand.py", line 276, in populate_requirement_set
+    wheel_cache=wheel_cache
+  File "/disk/sim/home/bitterwo/tensorflow/cnn/cnnv/lib/python3.5/site-packages/pip/req/req_install.py", line 201, in from_line
+    "not found." % name
+pip.exceptions.InstallationError: Directory '.' is not installable. File 'setup.py' not found.
