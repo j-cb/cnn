@@ -1,5 +1,6 @@
 from builtins import range
 import numpy as np
+import itertools
 
 
 def affine_forward(x, w, b):
@@ -527,7 +528,15 @@ def max_pool_forward_naive(x, pool_param):
     ###########################################################################
     # TODO: Implement the max pooling forward pass                            #
     ###########################################################################
-    pass
+    N, C, H1, W1 = x.shape
+    FH = pool_param['pool_height']
+    FW = pool_param['pool_width']
+    S = pool_param['stride']
+    H2 = (H1-FH)//S + 1
+    W2 = (W1-FW)//S + 1
+    out = np.zeros((N,C,H2,W2))
+    for (i,j) in itertools.product(range(H2),range(W2)):
+        out[:,:,i,j] = x[:,:,i*S:i*S+FH,j*S:j*S+FW].max(axis=(2,3))
     ###########################################################################
     #                             END OF YOUR CODE                            #
     ###########################################################################
@@ -550,7 +559,23 @@ def max_pool_backward_naive(dout, cache):
     ###########################################################################
     # TODO: Implement the max pooling backward pass                           #
     ###########################################################################
-    pass
+    x, pool_param = cache
+    N, C, H1, W1 = x.shape
+    FH = pool_param['pool_height']
+    FW = pool_param['pool_width']
+    S = pool_param['stride']
+    H2 = (H1-FH)//S + 1
+    W2 = (W1-FW)//S + 1
+    dx = np.zeros(x.shape)
+    outmask = {}
+    for (n,c,i,j) in itertools.product(range(N),range(C),range(H2),range(W2)):
+        outmask[(n,c,i,j)] = np.unravel_index(np.argmax(x[n,c,i*S:i*S+FH,j*S:j*S+FW]), x[n,c,i*S:i*S+FH,j*S:j*S+FW].shape)
+    print('x: ', x[0,0,:4,:4])
+    print('outmask: ')
+    print(outmask[0,0,0,0], outmask[0,0,0,1])
+    print(outmask[0,0,1,0], outmask[0,0,1,1])
+    for (n,c,i,j) in itertools.product(range(N),range(C),range(H2),range(W2)):
+        dx[n,c,i*S+outmask[(n,c,i,j)][0], j*S+outmask[(n,c,i,j)][1]] += dout[n,c,i,j]
     ###########################################################################
     #                             END OF YOUR CODE                            #
     ###########################################################################
