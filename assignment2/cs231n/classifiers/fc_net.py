@@ -297,7 +297,7 @@ class FullyConnectedNet(object):
         if self.use_batchnorm:
             if self.use_dropout:
                 for i in reversed(range(self.num_layers-1)):
-                    lg['W'+str(i)] = affine_bn_relu_dropout:backward(lg['W'+str(i+1)][0],F[i+1][1])
+                    lg['W'+str(i)] = affine_bn_relu_dropout_backward(lg['W'+str(i+1)][0],F[i+1][1])
                     grads['W'+str(i)] = lg['W'+str(i)][1] + self.reg*self.params['W'+str(i)]
                     grads['b'+str(i)] = lg['W'+str(i)][2]
                     grads['gamma'+str(i)] = lg['W'+str(i)][3]

@@ -56,11 +56,11 @@ class ThreeLayerConvNet(object):
         self.A = 1 + (self.H + 2 * self.pad - self.HH) // self.stride
         self.B = 1 + (self.W + 2 * self.pad - self.WW) // self.stride
         self.params['W1'] = np.random.normal(0, weight_scale, (self.F,self.C,self.HH,self.WW))
-        self.params['b1'] = np.zeros(	self.F)
+        self.params['b1'] = np.zeros(self.F)
         self.Ap, self.Bp = (self.A//2, self.B//2)
-        self.params['W2'] = np.random.normal(0, weight_scale, (hidden_dim, self.Ap, self.Bp))
+        self.params['W2'] = np.random.normal(0, weight_scale, (self.F * self.Ap * self.Bp, hidden_dim))
         self.params['b2'] = np.zeros(hidden_dim)
-        self.params['W3'] = np.random.normal(0, weight_scale, (num_classes, hidden_dim))
+        self.params['W3'] = np.random.normal(0, weight_scale, (hidden_dim, num_classes))
         self.params['b3'] = np.zeros(num_classes)
         ############################################################################
         #                             END OF YOUR CODE                             #
@@ -93,7 +93,12 @@ class ThreeLayerConvNet(object):
         # computing the class scores for X and storing them in the scores          #
         # variable.                                                                #
         ############################################################################
-        pass
+        Xp, cachep = conv_relu_pool_forward(X, W1, b1, conv_param, pool_param)
+        #print('Shape of Xp: ', Xp.shape)
+        #print('Shape of W2: ', W2.shape)
+        Xr, cacher = affine_relu_forward(Xp, W2, b2)
+        Xc, cachec = affine_forward(Xr, W3, b3)
+        scores = Xc
         ############################################################################
         #                             END OF YOUR CODE                             #
         ############################################################################
@@ -108,9 +113,20 @@ class ThreeLayerConvNet(object):
         # data loss using softmax, and make sure that grads[k] holds the gradients #
         # for self.params[k]. Don't forget to add L2 regularization!               #
         ############################################################################
-        pass
+        #print('Shape of Xc: ', Xc.shape)
+        ls, dout = softmax_loss(Xc, y)
+        lr = [0,0,0]
+        for i in range(3):
+            lr[i] = self.reg*np.sum(self.params['W'+str(i+1)]**2)/2
+        loss = ls + np.sum(lr)
+        d3, *c3 = affine_backward(dout, cachec)
+        grads['W3'], grads['b3'] = c3
+        d2, *c2 = affine_relu_backward(d3, cacher)
+        grads['W2'], grads['b2'] = c2
+        d1, *c1 = conv_relu_pool_backward(d2, cachep)
+        grads['W1'], grads['b1'] = c1
         ############################################################################
         #                             END OF YOUR CODE                             #
         ############################################################################
-
+        #print('loss, grads: ', loss, grads.keys())
         return loss, grads
