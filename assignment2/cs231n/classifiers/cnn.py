@@ -48,7 +48,20 @@ class ThreeLayerConvNet(object):
         # hidden affine layer, and keys 'W3' and 'b3' for the weights and biases   #
         # of the output affine layer.                                              #
         ############################################################################
-        pass
+        self.C, self.H, self.W = input_dim
+        self.HH, self.WW = (filter_size, filter_size)
+        self.F = num_filters
+        self.stride = 1
+        self.pad = (filter_size - 1) // 2
+        self.A = 1 + (self.H + 2 * self.pad - self.HH) // self.stride
+        self.B = 1 + (self.W + 2 * self.pad - self.WW) // self.stride
+        self.params['W1'] = np.random.normal(0, weight_scale, (self.F,self.C,self.HH,self.WW))
+        self.params['b1'] = np.zeros(	self.F)
+        self.Ap, self.Bp = (self.A//2, self.B//2)
+        self.params['W2'] = np.random.normal(0, weight_scale, (hidden_dim, self.Ap, self.Bp))
+        self.params['b2'] = np.zeros(hidden_dim)
+        self.params['W3'] = np.random.normal(0, weight_scale, (num_classes, hidden_dim))
+        self.params['b3'] = np.zeros(num_classes)
         ############################################################################
         #                             END OF YOUR CODE                             #
         ############################################################################
